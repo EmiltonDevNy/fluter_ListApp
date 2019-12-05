@@ -21,6 +21,18 @@ class _HomeState extends State<Home> {
 
   List _toDoList = [];
 
+
+  @override
+  void initState() {
+    super.initState();
+
+    _readData().then((data) {
+      setState(() {
+        _toDoList = json.decode(data);
+      });
+    });
+  }
+
   void _addToDo() {
     setState(() {
       Map<String, dynamic> newToDo = Map();
@@ -28,6 +40,7 @@ class _HomeState extends State<Home> {
       _toDoController.text = "";
       newToDo["ok"] = false;
       _toDoList.add(newToDo);
+      _saveData();
     });
   }
 
@@ -77,6 +90,7 @@ class _HomeState extends State<Home> {
                     onChanged: (c) {
                       setState(() {
                         _toDoList[index]["ok"] = c;
+                        _saveData();
                       });
                     },
                     );
@@ -91,7 +105,7 @@ class _HomeState extends State<Home> {
     return File("${directory.path}/data.json");
   }
 
-  Future<File> __saveData( ) async {
+  Future<File> _saveData( ) async {
     String data = jsonEncode(_toDoList);
     final file = await _getFile();
     return file.writeAsString(data);

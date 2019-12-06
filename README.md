@@ -1,6 +1,6 @@
-# todo_app
+# To Do List App - Emanuel Milton
 
-To do List App Flutter
+To do List App Flutter. Ios || Android.
 
 ## Getting Started
 
@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 Aplicativo Flutter.
 Android.
 Ios.
+
+
+Português-BR
